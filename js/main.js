@@ -225,10 +225,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const header = document.querySelector('.header');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            header.style.backgroundColor = 'rgba(10, 10, 10, 0.95)';
+            header.classList.add('header--scrolled');
         } else {
-            header.style.backgroundColor = 'rgba(10, 10, 10, 0.8)';
+            header.classList.remove('header--scrolled');
         }
+    });
+
+    // 6.5. Smooth Scroll for Anchor Links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                lenis.scrollTo(targetElement);
+                
+                // Close mobile menu if open
+                if (window.innerWidth < 1024 && hamburger && nav) {
+                     hamburger.setAttribute('aria-expanded', 'false');
+                     nav.style.display = '';
+                     lenis.start();
+                }
+            }
+        });
     });
 
     // 7. Initialize Fancybox
@@ -238,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showClass: "f-fadeIn",
         hideClass: "f-fadeOut",
         dragToClose: false,
+        Hash: false,
         Images: {
             zoom: false,
         },
@@ -251,6 +273,14 @@ document.addEventListener('DOMContentLoaded', () => {
         Thumbs: {
             autoStart: false,
         },
+        on: {
+            close: () => {
+                // Remove focus to prevent accidental re-triggering
+                if (document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur();
+                }
+            }
+        }
     });
 
     // Animate Gallery Items on Scroll
