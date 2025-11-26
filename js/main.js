@@ -99,95 +99,96 @@ document.addEventListener('DOMContentLoaded', () => {
     // 4. GSAP Scroll Animations
     // Defer ScrollTrigger registration slightly to allow initial render
     setTimeout(() => {
-        gsap.registerPlugin(ScrollTrigger);
+        requestAnimationFrame(() => {
+            gsap.registerPlugin(ScrollTrigger);
 
-        // A. Split Text Reveal (Headings)
-        // Use a single SplitType instance for all elements to minimize layout thrashing
-        // SplitType will process them in a batch
-        try {
-            const splitInstance = new SplitType('[data-split-text]', { types: 'words, chars' });
-            
-            // Iterate over the original elements to set up ScrollTriggers for each
-            document.querySelectorAll('[data-split-text]').forEach((element) => {
-                // Select only the chars belonging to this specific element
-                const chars = element.querySelectorAll('.char');
+            // A. Split Text Reveal (Headings)
+            // Use a single SplitType instance for all elements to minimize layout thrashing
+            // SplitType will process them in a batch
+            try {
+                const splitInstance = new SplitType('[data-split-text]', { types: 'words, chars' });
                 
-                if (chars.length > 0) {
-                    gsap.from(chars, {
+                // Iterate over the original elements to set up ScrollTriggers for each
+                document.querySelectorAll('[data-split-text]').forEach((element) => {
+                    // Select only the chars belonging to this specific element
+                    const chars = element.querySelectorAll('.char');
+                    
+                    if (chars.length > 0) {
+                        gsap.from(chars, {
+                            scrollTrigger: {
+                                trigger: element,
+                                start: 'top 80%',
+                                toggleActions: 'play none none reverse'
+                            },
+                            y: 100,
+                            opacity: 0,
+                            rotation: 5,
+                            duration: 0.8,
+                            stagger: 0.02,
+                            ease: 'back.out(1.7)'
+                        });
+                    }
+                });
+            } catch (e) {
+                console.warn('SplitType failed to initialize', e);
+            }
+
+            // Refresh ScrollTrigger once after all DOM manipulations
+            ScrollTrigger.refresh();
+
+            // B. Standard Fade Up (Cards, etc)
+            const revealElements = document.querySelectorAll('[data-reveal]');
+            revealElements.forEach(element => {
+                gsap.fromTo(element, 
+                    { y: 50, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 1,
+                        ease: 'power3.out',
                         scrollTrigger: {
                             trigger: element,
-                            start: 'top 80%',
+                            start: 'top 85%',
                             toggleActions: 'play none none reverse'
-                        },
-                        y: 100,
-                        opacity: 0,
-                        rotation: 5,
+                        }
+                    }
+                );
+            });
+
+            // C. Staggered List Items
+            const listItems = document.querySelectorAll('.advantages__list');
+            listItems.forEach(list => {
+                const items = list.querySelectorAll('.advantage-item');
+                gsap.fromTo(items, 
+                    { x: -50, opacity: 0 },
+                    {
+                        x: 0,
+                        opacity: 1,
                         duration: 0.8,
-                        stagger: 0.02,
-                        ease: 'back.out(1.7)'
-                    });
-                }
-            });
-        } catch (e) {
-            console.warn('SplitType failed to initialize', e);
-        }
-
-        // Refresh ScrollTrigger once after all DOM manipulations
-        ScrollTrigger.refresh();
-
-        // B. Standard Fade Up (Cards, etc)
-        const revealElements = document.querySelectorAll('[data-reveal]');
-        revealElements.forEach(element => {
-            gsap.fromTo(element, 
-                { y: 50, opacity: 0 },
-                {
-                    y: 0,
-                    opacity: 1,
-                    duration: 1,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: element,
-                        start: 'top 85%',
-                        toggleActions: 'play none none reverse'
+                        stagger: 0.2,
+                        ease: 'power2.out',
+                        scrollTrigger: {
+                            trigger: list,
+                            start: 'top 80%',
+                        }
                     }
-                }
-            );
-        });
-
-        // C. Staggered List Items
-        const listItems = document.querySelectorAll('.advantages__list');
-        listItems.forEach(list => {
-            const items = list.querySelectorAll('.advantage-item');
-            gsap.fromTo(items, 
-                { x: -50, opacity: 0 },
-                {
-                    x: 0,
-                    opacity: 1,
-                    duration: 0.8,
-                    stagger: 0.2,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: list,
-                        start: 'top 80%',
-                    }
-                }
-            );
-        });
-
-        // D. Parallax Images & Asymmetric Grids
-        const parallaxImages = document.querySelectorAll('[data-parallax-image] img');
-        parallaxImages.forEach(img => {
-            gsap.to(img, {
-                yPercent: -20,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: img.parentElement,
-                    start: 'top bottom',
-                    end: 'bottom top',
-                    scrub: true
-                }
+                );
             });
-        });
+
+            // D. Parallax Images & Asymmetric Grids
+            const parallaxImages = document.querySelectorAll('[data-parallax-image] img');
+            parallaxImages.forEach(img => {
+                gsap.to(img, {
+                    yPercent: -20,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: img.parentElement,
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: true
+                    }
+                });
+            });
 
             // Parallax for Services Grid (Asymmetry)
             if (window.innerWidth > 1024) {
@@ -202,7 +203,8 @@ document.addEventListener('DOMContentLoaded', () => {
                     }
                 });
             }
-    }, 50);    // 5. Mobile Menu Toggle
+        });
+    }, 100);    // 5. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
     const navLinks = document.querySelectorAll('.nav__link');
@@ -260,12 +262,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 6. Header Scroll Effect
+    // 6. Header Scroll Effect (Optimized with Lenis)
     const header = document.querySelector('.header');
     let isScrolled = false;
     
-    window.addEventListener('scroll', () => {
-        const shouldBeScrolled = window.scrollY > 50;
+    // Use Lenis scroll event instead of window.scroll to avoid layout thrashing
+    lenis.on('scroll', (e) => {
+        const shouldBeScrolled = e.scroll > 50;
         
         if (shouldBeScrolled !== isScrolled) {
             isScrolled = shouldBeScrolled;
