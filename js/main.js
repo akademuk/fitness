@@ -102,34 +102,35 @@ document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
 
         // A. Split Text Reveal (Headings)
-        // Batch DOM reads and writes to avoid layout thrashing
-        const splitTypes = document.querySelectorAll('[data-split-text]');
-        const textInstances = [];
-
-        // 1. Write Phase: Create SplitType instances (modifies DOM)
-        splitTypes.forEach((char) => {
-            textInstances.push({
-                element: char,
-                split: new SplitType(char, { types: 'words, chars' })
+        // Use a single SplitType instance for all elements to minimize layout thrashing
+        // SplitType will process them in a batch
+        try {
+            const splitInstance = new SplitType('[data-split-text]', { types: 'words, chars' });
+            
+            // Iterate over the original elements to set up ScrollTriggers for each
+            document.querySelectorAll('[data-split-text]').forEach((element) => {
+                // Select only the chars belonging to this specific element
+                const chars = element.querySelectorAll('.char');
+                
+                if (chars.length > 0) {
+                    gsap.from(chars, {
+                        scrollTrigger: {
+                            trigger: element,
+                            start: 'top 80%',
+                            toggleActions: 'play none none reverse'
+                        },
+                        y: 100,
+                        opacity: 0,
+                        rotation: 5,
+                        duration: 0.8,
+                        stagger: 0.02,
+                        ease: 'back.out(1.7)'
+                    });
+                }
             });
-        });
-
-        // 2. Read/Animation Phase: Create GSAP animations
-        textInstances.forEach(({ element, split }) => {
-            gsap.from(split.chars, {
-                scrollTrigger: {
-                    trigger: element,
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse'
-                },
-                y: 100,
-                opacity: 0,
-                rotation: 5,
-                duration: 0.8,
-                stagger: 0.02,
-                ease: 'back.out(1.7)'
-            });
-        });
+        } catch (e) {
+            console.warn('SplitType failed to initialize', e);
+        }
 
         // Refresh ScrollTrigger once after all DOM manipulations
         ScrollTrigger.refresh();
@@ -301,8 +302,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Initialize Fancybox (Deferred & Dynamic)
-    setTimeout(() => {
+    // 7. Initialize Fancybox (Deferred & Dynamic on Scroll)
+    const loadFancybox = () => {
         loadScript('assets/vendor/js/fancybox.umd.js').then(() => {
             Fancybox.bind("[data-fancybox]", {
                 // Custom options
@@ -334,21 +335,46 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }).catch(err => console.error('Failed to load Fancybox', err));
-    }, 2500);
+    };
 
-    // 8. Phone Mask (IMask) (Deferred & Dynamic)
-    setTimeout(() => {
-        const phoneInput = document.getElementById('phone');
-        if (phoneInput) {
-            loadScript('assets/vendor/js/imask.js').then(() => {
-                IMask(phoneInput, {
-                    mask: '+{380} (00) 000-00-00',
-                    lazy: false,  // Show placeholder always
-                    placeholderChar: '_'
-                });
-            }).catch(err => console.error('Failed to load IMask', err));
-        }
-    }, 3000);
+    // Observer for Fancybox (Gallery or Testimonials)
+    const fancyboxObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                loadFancybox();
+                fancyboxObserver.disconnect(); // Load only once
+            }
+        });
+    }, { rootMargin: '500px' }); // Load well in advance
+
+    const gallerySection = document.querySelector('#gallery');
+    const testimonialsSection = document.querySelector('.testimonials');
+    
+    if (gallerySection) fancyboxObserver.observe(gallerySection);
+    if (testimonialsSection) fancyboxObserver.observe(testimonialsSection);
+
+
+    // 8. Phone Mask (IMask) (Deferred & Dynamic on Scroll)
+    const bookingSection = document.getElementById('booking');
+    if (bookingSection) {
+        const imaskObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                const phoneInput = document.getElementById('phone');
+                if (phoneInput) {
+                    loadScript('assets/vendor/js/imask.js').then(() => {
+                        IMask(phoneInput, {
+                            mask: '+{380} (00) 000-00-00',
+                            lazy: false,  // Show placeholder always
+                            placeholderChar: '_'
+                        });
+                    }).catch(err => console.error('Failed to load IMask', err));
+                }
+                imaskObserver.disconnect();
+            }
+        }, { rootMargin: '200px' });
+        
+        imaskObserver.observe(bookingSection);
+    }
 
     // 9. Custom Select Dropdown
     const customSelect = document.querySelector('.custom-select');
