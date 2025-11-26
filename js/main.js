@@ -32,12 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
         touchMultiplier: 2,
     });
 
-    function raf(time) {
-        lenis.raf(time);
-        requestAnimationFrame(raf);
-    }
+    // Sync Lenis and ScrollTrigger
+    // This ensures ScrollTrigger updates exactly when Lenis scrolls, preventing layout thrashing
+    lenis.on('scroll', ScrollTrigger.update);
 
-    requestAnimationFrame(raf);
+    // Use GSAP's ticker for the RAF loop to ensure perfect synchronization
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+
+    // Disable lag smoothing to prevent jumps during heavy loads
+    gsap.ticker.lagSmoothing(0);
 
     // 2. Initialize Swiper (Hero)
     const heroSwiper = new Swiper('.hero-slider', {
@@ -422,18 +427,23 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 10. Floating Action Button (FAB) Visibility
+    // Optimized: Use IntersectionObserver instead of scroll event to avoid forced reflows
     const fab = document.querySelector('.fab-btn');
     const heroSection = document.querySelector('.hero');
     
     if (fab && heroSection) {
-        window.addEventListener('scroll', () => {
-            // Show FAB after scrolling past hero section
-            if (window.scrollY > heroSection.offsetHeight) {
-                fab.classList.add('visible');
-            } else {
-                fab.classList.remove('visible');
-            }
-        });
+        const fabObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // If hero is NOT intersecting (scrolled past), show FAB
+                if (!entry.isIntersecting) {
+                    fab.classList.add('visible');
+                } else {
+                    fab.classList.remove('visible');
+                }
+            });
+        }, { threshold: 0 }); // Trigger as soon as even 1px of hero leaves/enters
+
+        fabObserver.observe(heroSection);
     }
 
     // Animate Gallery Items on Scroll

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'elite-fit-cache-v1';
+const CACHE_NAME = 'elite-fit-cache-v2';
 
 // Assets to pre-cache immediately
 const PRECACHE_URLS = [
@@ -66,7 +66,33 @@ self.addEventListener('fetch', event => {
         return;
     }
 
-    // 2. Network First for HTML (Navigation)
+    // 2. Google Fonts Caching (Cache First for Fonts, Stale-While-Revalidate for CSS)
+    if (url.origin === 'https://fonts.googleapis.com' || url.origin === 'https://fonts.gstatic.com') {
+        event.respondWith(
+            caches.open(CACHE_NAME).then(cache => {
+                return cache.match(event.request).then(cachedResponse => {
+                    // Return cached response immediately if available
+                    if (cachedResponse) {
+                        // Update cache in background for CSS, but keep fonts (immutable)
+                        if (url.origin === 'https://fonts.googleapis.com') {
+                            fetch(event.request).then(networkResponse => {
+                                cache.put(event.request, networkResponse.clone());
+                            });
+                        }
+                        return cachedResponse;
+                    }
+
+                    return fetch(event.request).then(networkResponse => {
+                        cache.put(event.request, networkResponse.clone());
+                        return networkResponse;
+                    });
+                });
+            })
+        );
+        return;
+    }
+
+    // 3. Network First for HTML (Navigation)
     if (event.request.mode === 'navigate') {
         event.respondWith(
             fetch(event.request)
