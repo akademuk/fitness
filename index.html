@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ELITE FIT | Exclusive Fitness Club</title>
+    <meta name="description" content="An exclusive fitness club offering personalized training, spa services, yoga, and massages for those who value luxury and wellness.">
+    
+    <!-- Preload Critical Assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Fonts (Using CDN for immediate preview, but structure allows local swap) -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syncopate:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+    <!-- External Libraries -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css">
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Noise Overlay for Texture -->
+    <div class="noise-overlay"></div>
+
+    <!-- Theme Switcher (Dev Only) -->
+    <div id="theme-switcher-root"></div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container header__container">
+            <a href="#" class="logo">ELITE<span class="logo__accent">FIT</span></a>
+            
+            <nav class="nav" id="main-nav" aria-label="Main Navigation">
+                <ul class="nav__list">
+                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                    <li class="nav__item"><a href="#advantages" class="nav__link">Advantages</a></li>
+                    <li class="nav__item"><a href="#gallery" class="nav__link">Gallery</a></li>
+                    <li class="nav__item"><a href="#membership" class="nav__link">Membership</a></li>
+                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="header__actions">
+                <a href="#booking" class="btn btn--primary">Book a Session</a>
+                <button class="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="main-nav">
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                    <span class="hamburger__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Section 1: Hero Slider -->
+        <section class="hero" id="home">
+            <div class="swiper hero-slider">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide__bg">
+                            
+                    <picture>
+                        <source srcset="assets/images/image-1.webp" type="image/webp">
+                        <img src="assets/images/image-1.jpg" alt="Elite gym interior" width="2070" height="1380" loading="eager" fetchpriority="high">
+                    </picture>
+                        </div>
+                        <div class="container hero-slide__content">
+                            <h1 class="hero-title">Redefine <br> Your Limits</h1>
+                            <p class="hero-subtitle">Luxury wellness and personalized training for the elite.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide__bg">
+                            
+                    <picture>
+                        <source srcset="assets/images/image-2.webp" type="image/webp">
+                        <img src="assets/images/image-2.jpg" alt="Personal training session" width="2069" height="3097" loading="eager" >
+                    </picture>
+                        </div>
+                        <div class="container hero-slide__content">
+                            <h1 class="hero-title">Excellence <br> in Motion</h1>
+                            <p class="hero-subtitle">State-of-the-art equipment meets expert guidance.</p>
+                        </div>
+                    </div>
+                    <div class="swiper-slide hero-slide">
+                        <div class="hero-slide__bg">
+                            
+                    <picture>
+                        <source srcset="assets/images/image-3.webp" type="image/webp">
+                        <img src="assets/images/image-3.jpg" alt="Spa and relaxation" width="2070" height="1380" loading="lazy" >
+                    </picture>
+                        </div>
+                        <div class="container hero-slide__content">
+                            <h1 class="hero-title">Restore <br> Your Balance</h1>
+                            <p class="hero-subtitle">Premium spa services for total rejuvenation.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-navigation-wrapper">
+                    <div class="swiper-button-prev">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                    </div>
+                    <div class="swiper-button-next">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Status Rail: Hero Metrics -->
+        <section class="status-rail" aria-label="Club performance metrics">
+            <div class="container status-rail__grid">
+                <div class="status-rail__item" data-reveal>
+                    <span class="status-rail__label">Members Worldwide</span>
+                    <strong class="status-rail__value">2.4K</strong>
+                    <p>Hand-selected clientele across 18 cities.</p>
+                </div>
+                <div class="status-rail__item" data-reveal>
+                    <span class="status-rail__label">Coach to Client Ratio</span>
+                    <strong class="status-rail__value">1 : 4</strong>
+                    <p>Ensuring every program remains bespoke.</p>
+                </div>
+                <div class="status-rail__item" data-reveal>
+                    <span class="status-rail__label">Average PR Gain</span>
+                    <strong class="status-rail__value">+18%</strong>
+                    <p>Measured over the first 90 days of membership.</p>
+                </div>
+                <div class="status-rail__item" data-reveal>
+                    <span class="status-rail__label">Recovery Labs</span>
+                    <strong class="status-rail__value">06</strong>
+                    <p>Cryo, red light, and hydro circuits on site.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Services -->
+        <section class="section services" id="services">
+            <div class="container">
+                <h2 class="section-title" data-split-text>Our Services</h2>
+                <div class="services__grid">
+                    <article class="service-card" data-hover-card>
+                        <div class="service-card__icon">
+                            <!-- Dumbbell Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M6.5 6.5h11M6.5 17.5h11M6.5 12h11M5 6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0-5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path d="M4 7h16M4 17h16M2 12h20" stroke-width="2"/></svg>
+                        </div>
+                        <h3 class="service-card__title">Personal Training</h3>
+                        <p class="service-card__desc">Tailored programs designed by world-class experts to meet your specific goals.</p>
+                        <div class="service-card__arrow">→</div>
+                    </article>
+                    <article class="service-card" data-hover-card>
+                        <div class="service-card__icon">
+                            <!-- Spa/Lotus Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v8M8 12h8" stroke-width="1.5"/></svg>
+                        </div>
+                        <h3 class="service-card__title">Spa & Wellness</h3>
+                        <p class="service-card__desc">Rejuvenate with our exclusive massage therapies, saunas, and relaxation zones.</p>
+                        <div class="service-card__arrow">→</div>
+                    </article>
+                    <article class="service-card" data-hover-card>
+                        <div class="service-card__icon">
+                            <!-- Yoga Icon -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"><circle cx="12" cy="5" r="2"/><path d="M9 20l-1-6 4-3 4 3-1 6"/><path d="M6 10l5-2 5 2"/></svg>
+                        </div>
+                        <h3 class="service-card__title">Yoga & Pilates</h3>
+                        <p class="service-card__desc">Find your center in our serene studios with guided sessions for all levels.</p>
+                        <div class="service-card__arrow">→</div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Marquee Section -->
+        <div class="marquee-section">
+            <div class="marquee-content">
+                <span>STRENGTH • ENDURANCE • POWER • DISCIPLINE • FOCUS • </span>
+                <span>STRENGTH • ENDURANCE • POWER • DISCIPLINE • FOCUS • </span>
+            </div>
+        </div>
+
+        <!-- Section 3: Advantages -->
+        <section class="section advantages" id="advantages">
+            <div class="container">
+                <div class="advantages__wrapper">
+                    <div class="advantages__content">
+                        <h2 class="section-title" data-split-text>Why Choose Elite Fit?</h2>
+                        <ul class="advantages__list">
+                            <li class="advantage-item" data-reveal-item>
+                                <span class="advantage-item__num">01</span>
+                                <div class="advantage-item__text">
+                                    <h4>Expert Trainers</h4>
+                                    <p>Certified professionals dedicated to your progress.</p>
+                                </div>
+                            </li>
+                            <li class="advantage-item" data-reveal-item>
+                                <span class="advantage-item__num">02</span>
+                                <div class="advantage-item__text">
+                                    <h4>Elite Equipment</h4>
+                                    <p>The latest technology from Technogym and Life Fitness.</p>
+                                </div>
+                            </li>
+                            <li class="advantage-item" data-reveal-item>
+                                <span class="advantage-item__num">03</span>
+                                <div class="advantage-item__text">
+                                    <h4>Private Zones</h4>
+                                    <p>Exclusive areas for focused, uninterrupted workouts.</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="advantages__image" data-parallax-image>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-4.webp" type="image/webp">
+                        <img src="assets/images/image-4.jpg" alt="High end gym equipment" width="1975" height="1480" loading="lazy" >
+                    </picture>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Private Protocol Narrative -->
+        <section class="section protocol" aria-label="Elite fit protocol">
+            <div class="container protocol__grid">
+                <div class="protocol__intro" data-reveal>
+                    <p class="section-eyebrow">Members Only Protocol</p>
+                    <h2 class="section-title">The Elite Fit Method</h2>
+                    <p>Every guest completes an onboarding dossier, biometric scan, and recovery lab orientation before their first training block. The result is a program that evolves weekly, synchronizing performance, recovery, and mindset.</p>
+                    <a href="#booking" class="btn btn--outline">View Full Manifest</a>
+                </div>
+                <div class="protocol__timeline">
+                    <article class="protocol__step" data-reveal>
+                        <span class="protocol__step-num">01</span>
+                        <div>
+                            <h3>Diagnostic Lab</h3>
+                            <p>VO2 max, force-plate analytics, and mobility screening recorded into your private vault.</p>
+                        </div>
+                    </article>
+                    <article class="protocol__step" data-reveal>
+                        <span class="protocol__step-num">02</span>
+                        <div>
+                            <h3>Program Architecture</h3>
+                            <p>Trainers, nutritionists, and recovery specialists co-author a four-week microcycle tailored to your lifestyle.</p>
+                        </div>
+                    </article>
+                    <article class="protocol__step" data-reveal>
+                        <span class="protocol__step-num">03</span>
+                        <div>
+                            <h3>Performance Concierge</h3>
+                            <p>Dedicated concierge manages schedule changes, travel kits, and remote coaching while you move.</p>
+                        </div>
+                    </article>
+                    <article class="protocol__step" data-reveal>
+                        <span class="protocol__step-num">04</span>
+                        <div>
+                            <h3>Recovery Debrief</h3>
+                            <p>Weekly data reviews inside the recovery lounges to recalibrate intensity, sleep, and nourishment.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Premium Gallery (Mosaic) -->
+        <section class="section gallery-section" id="gallery">
+            <div class="container">
+                <div class="gallery-header">
+                    <h2 class="section-title" data-split-text>Visual Experience</h2>
+                    <p class="gallery-subtitle">Immerse yourself in the atmosphere of excellence.</p>
+                </div>
+                
+                <div class="gallery-mosaic">
+                    <!-- Item 1: Large Landscape -->
+                    <a href="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" 
+                       class="gallery-item gallery-item--large" 
+                       data-fancybox="gallery" 
+                       data-caption="Main Training Hall">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Training Hall</span>
+                        </div>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-5.webp" type="image/webp">
+                        <img src="assets/images/image-5.jpg" alt="Gym Interior" width="800" height="533" loading="lazy" >
+                    </picture>
+                    </a>
+
+                    <!-- Item 2: Tall Portrait -->
+                    <a href="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=2070&auto=format&fit=crop" 
+                       class="gallery-item gallery-item--tall" 
+                       data-fancybox="gallery" 
+                       data-caption="Cardio Zone">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Cardio Zone</span>
+                        </div>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-6.webp" type="image/webp">
+                        <img src="assets/images/image-6.jpg" alt="Cardio" width="600" height="400" loading="lazy" >
+                    </picture>
+                    </a>
+
+                    <!-- Item 3: Standard -->
+                    <a href="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2069&auto=format&fit=crop" 
+                       class="gallery-item" 
+                       data-fancybox="gallery" 
+                       data-caption="Personal Training">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Personal Training</span>
+                        </div>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-7.webp" type="image/webp">
+                        <img src="assets/images/image-7.jpg" alt="Trainer" width="600" height="898" loading="lazy" >
+                    </picture>
+                    </a>
+
+                    <!-- Item 4: Standard -->
+                    <a href="https://images.unsplash.com/photo-1540497077202-7c8a3999166f?q=80&w=2070&auto=format&fit=crop" 
+                       class="gallery-item" 
+                       data-fancybox="gallery" 
+                       data-caption="Luxury Spa">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Luxury Spa</span>
+                        </div>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-8.webp" type="image/webp">
+                        <img src="assets/images/image-8.jpg" alt="Spa" width="600" height="400" loading="lazy" >
+                    </picture>
+                    </a>
+
+                    <!-- Item 5: Wide -->
+                    <a href="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?q=80&w=1975&auto=format&fit=crop" 
+                       class="gallery-item gallery-item--wide" 
+                       data-fancybox="gallery" 
+                       data-caption="Premium Equipment">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Premium Equipment</span>
+                        </div>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-9.webp" type="image/webp">
+                        <img src="assets/images/image-9.jpg" alt="Equipment" width="800" height="599" loading="lazy" >
+                    </picture>
+                    </a>
+                    
+                    <!-- Item 6: Tall -->
+                    <a href="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2069&auto=format&fit=crop" 
+                       class="gallery-item gallery-item--tall" 
+                       data-fancybox="gallery" 
+                       data-caption="Yoga Studio">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Yoga Studio</span>
+                        </div>
+                        
+                    <picture>
+                        <source srcset="assets/images/image-10.webp" type="image/webp">
+                        <img src="assets/images/image-10.jpg" alt="Yoga" width="600" height="401" loading="lazy" >
+                    </picture>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Coach Roster -->
+        <section class="section coaches" aria-label="Coach roster">
+            <div class="container">
+                <div class="coaches__header">
+                    <h2 class="section-title" data-reveal>Performance Architects</h2>
+                    <p data-reveal>Our multidisciplinary team pairs Olympic-level conditioning with mindfulness and recovery expertise.</p>
+                </div>
+                <div class="coaches__grid">
+                    <article class="coach-card" data-reveal>
+                        <div class="coach-card__media">
+                            <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39?w=900&auto=format&fit=crop" alt="Coach Ava" loading="lazy">
+                        </div>
+                        <div class="coach-card__body">
+                            <div class="coach-card__role">Strength Director</div>
+                            <h3>Ava Lennox</h3>
+                            <ul>
+                                <li>Force-plate analytics</li>
+                                <li>Olympic lifting cycles</li>
+                                <li>Altitude prep</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="coach-card" data-reveal>
+                        <div class="coach-card__media">
+                            <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=900&auto=format&fit=crop" alt="Coach Elias" loading="lazy">
+                        </div>
+                        <div class="coach-card__body">
+                            <div class="coach-card__role">Metabolic Specialist</div>
+                            <h3>Elias Romero</h3>
+                            <ul>
+                                <li>Zone 2 endurance labs</li>
+                                <li>Precision nutrition</li>
+                                <li>Wearable data sync</li>
+                            </ul>
+                        </div>
+                    </article>
+                    <article class="coach-card" data-reveal>
+                        <div class="coach-card__media">
+                            <img src="https://images.unsplash.com/photo-1504593811423-6dd665756598?w=900&auto=format&fit=crop" alt="Coach Mira" loading="lazy">
+                        </div>
+                        <div class="coach-card__body">
+                            <div class="coach-card__role">Recovery Strategist</div>
+                            <h3>Mira Chen</h3>
+                            <ul>
+                                <li>Nervous system recalibration</li>
+                                <li>Breathwork therapy</li>
+                                <li>Jet-lag mitigation</li>
+                            </ul>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 5: Testimonials -->
+        <section class="section testimonials">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal>Client Stories</h2>
+                <div class="swiper testimonials-slider" data-reveal>
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide testimonial-card">
+                            <div class="testimonial-card__content">
+                                <p>"The attention to detail at Elite Fit is unmatched. It's not just a gym; it's a lifestyle upgrade."</p>
+                            </div>
+                            <div class="testimonial-card__author">
+                                
+                    <picture>
+                        <source srcset="assets/images/image-11.webp" type="image/webp">
+                        <img src="assets/images/image-11.jpg" alt="James D." width="100" height="150" loading="lazy" >
+                    </picture>
+                                <div>
+                                    <h5>James D.</h5>
+                                    <span>CEO, Tech Corp</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide testimonial-card">
+                            <div class="testimonial-card__content">
+                                <p>"I've trained at many luxury clubs, but the personal trainers here are on another level."</p>
+                            </div>
+                            <div class="testimonial-card__author">
+                                
+                    <picture>
+                        <source srcset="assets/images/image-12.webp" type="image/webp">
+                        <img src="assets/images/image-12.jpg" alt="Sarah L." width="100" height="150" loading="lazy" >
+                    </picture>
+                                <div>
+                                    <h5>Sarah L.</h5>
+                                    <span>Fashion Designer</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide testimonial-card">
+                            <div class="testimonial-card__content">
+                                <p>"The spa services after a hard workout are exactly what I need to reset for the week."</p>
+                            </div>
+                            <div class="testimonial-card__author">
+                                
+                    <picture>
+                        <source srcset="assets/images/image-13.webp" type="image/webp">
+                        <img src="assets/images/image-13.jpg" alt="Michael R." width="100" height="150" loading="lazy" >
+                    </picture>
+                                <div>
+                                    <h5>Michael R.</h5>
+                                    <span>Architect</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 6: Booking Form -->
+        <section class="section booking" id="booking">
+            <div class="container booking__container">
+                <div class="booking__form-wrapper" data-reveal>
+                    <h2 class="section-title">Start Your Journey</h2>
+                    <p class="booking__subtitle">Book a complimentary trial session today.</p>
+                    <form class="form" id="booking-form">
+                        <div class="form__group">
+                            <input type="text" id="name" name="name" placeholder=" " required class="form__input">
+                            <label for="name" class="form__label">Full Name</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="email" id="email" name="email" placeholder=" " required class="form__input">
+                            <label for="email" class="form__label">Email Address</label>
+                        </div>
+                        <div class="form__group">
+                            <input type="tel" id="phone" name="phone" placeholder=" " required class="form__input">
+                            <label for="phone" class="form__label">Phone Number</label>
+                        </div>
+                        <div class="form__group">
+                            <select id="interest" name="interest" class="form__select" required>
+                                <option value="" disabled selected></option>
+                                <option value="personal">Personal Training</option>
+                                <option value="group">Group Classes</option>
+                                <option value="spa">Spa Services</option>
+                            </select>
+                            <label for="interest" class="form__label">Interested In</label>
+                        </div>
+                        <button type="submit" class="btn btn--primary btn--full btn--glow">Request Session</button>
+                    </form>
+                </div>
+                <div class="booking__image" data-parallax-image>
+                    
+                    <picture>
+                        <source srcset="assets/images/image-14.webp" type="image/webp">
+                        <img src="assets/images/image-14.jpg" alt="Gym interior" width="2070" height="1380" loading="lazy" >
+                    </picture>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 7 & 8: Membership & Pricing -->
+        <section class="section membership" id="membership">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal>Membership Packages</h2>
+                <div class="pricing-grid">
+                    <div class="pricing-card" data-reveal>
+                        <h3 class="pricing-card__title">Essential</h3>
+                        <div class="pricing-card__price">$150<span>/mo</span></div>
+                        <ul class="pricing-card__features">
+                            <li>Full Gym Access</li>
+                            <li>Locker Room Access</li>
+                            <li>1 Personal Training Session</li>
+                            <li>Free WiFi</li>
+                        </ul>
+                        <a href="#booking" class="btn btn--outline">Choose Plan</a>
+                    </div>
+                    <div class="pricing-card pricing-card--featured" data-reveal>
+                        <div class="pricing-card__badge">Most Popular</div>
+                        <h3 class="pricing-card__title">Elite</h3>
+                        <div class="pricing-card__price">$250<span>/mo</span></div>
+                        <ul class="pricing-card__features">
+                            <li>All Essential Features</li>
+                            <li>Unlimited Classes</li>
+                            <li>Spa Access</li>
+                            <li>5 Personal Training Sessions</li>
+                            <li>Guest Passes (2/mo)</li>
+                        </ul>
+                        <a href="#booking" class="btn btn--primary">Choose Plan</a>
+                    </div>
+                    <div class="pricing-card" data-reveal>
+                        <h3 class="pricing-card__title">VIP</h3>
+                        <div class="pricing-card__price">$450<span>/mo</span></div>
+                        <ul class="pricing-card__features">
+                            <li>All Elite Features</li>
+                            <li>Unlimited Personal Training</li>
+                            <li>Private Locker</li>
+                            <li>Laundry Service</li>
+                            <li>Nutrition Consultation</li>
+                        </ul>
+                        <a href="#booking" class="btn btn--outline">Choose Plan</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 9: FAQ -->
+        <section class="section faq">
+            <div class="container">
+                <h2 class="section-title text-center" data-reveal>Frequently Asked Questions</h2>
+                <div class="faq__grid">
+                    <details class="faq__item" data-reveal>
+                        <summary class="faq__question">What are your operating hours?</summary>
+                        <div class="faq__answer">We are open 24/7 for members with keycard access. Staffed hours are 6am to 10pm daily.</div>
+                    </details>
+                    <details class="faq__item" data-reveal>
+                        <summary class="faq__question">Do you offer trial sessions?</summary>
+                        <div class="faq__answer">Yes, we offer a complimentary one-day pass or a consultation with a trainer for prospective members.</div>
+                    </details>
+                    <details class="faq__item" data-reveal>
+                        <summary class="faq__question">Is parking available?</summary>
+                        <div class="faq__answer">Yes, we have a dedicated private parking lot for our members with valet service available during peak hours.</div>
+                    </details>
+                    <details class="faq__item" data-reveal>
+                        <summary class="faq__question">Can I freeze my membership?</summary>
+                        <div class="faq__answer">Yes, memberships can be frozen for up to 3 months per year for travel or medical reasons.</div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 10: Online Platform -->
+        <section class="section app-promo">
+            <div class="container app-promo__container">
+                <div class="app-promo__content" data-reveal>
+                    <h2 class="section-title">Train Anywhere</h2>
+                    <p>Access your personalized workout plans, book classes, and track your progress with our exclusive member app.</p>
+                    <ul class="app-features">
+                        <li>Real-time schedule booking</li>
+                        <li>Virtual coaching sessions</li>
+                        <li>Nutrition tracking</li>
+                    </ul>
+                    <div class="app-buttons">
+                        <button class="btn btn--primary">App Store</button>
+                        <button class="btn btn--primary">Google Play</button>
+                    </div>
+                </div>
+                <div class="app-promo__image" data-reveal>
+                    
+                    <picture>
+                        <source srcset="assets/images/image-15.webp" type="image/webp">
+                        <img src="assets/images/image-15.jpg" alt="Mobile App Interface" width="2070" height="1380" loading="lazy" >
+                    </picture>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 11: Social Responsibility -->
+        <section class="section social-responsibility">
+            <div class="container">
+                <div class="social-responsibility__content text-center" data-reveal>
+                    <h2 class="section-title">Commitment to Wellness</h2>
+                    <p class="social-responsibility__desc">We believe in a healthier planet as much as a healthier you. Elite Fit is dedicated to sustainability through eco-friendly equipment, zero-waste initiatives, and community wellness programs.</p>
+                    <div class="social-responsibility__badges">
+                        <div class="badge">
+                            <div class="badge__icon">
+                                <!-- Leaf Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg>
+                            </div>
+                            <p>Eco-Friendly</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge__icon">
+                                <!-- Recycle Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"/><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"/><path d="m14 16-3 3 3 3"/><path d="M8.293 13.596 7.196 9.5 3.1 9.5a1.83 1.83 0 0 1-1.582-.885 1.784 1.784 0 0 1 .004-1.78l4.892-8.527a1.834 1.834 0 0 1 3.146 0l2.126 3.705 9.071 15.811a1.83 1.83 0 0 1 .004 1.78 1.83 1.83 0 0 1-1.582.885H8.293Z" style="display:none"/><path d="M12 3 8 10h8Z" style="display:none"/><path d="M7 19h14"/><path d="M13 22l-3-3 3-3"/><path d="M6.5 11.5 10 5H3l3.5 6.5Z"/><path d="m18 5 3.5 6.5H14.5L18 5Z"/></svg>
+                                <!-- Simplified Recycle -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 23 3 19l4-4"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/><path d="M17 1 21 5l-4 4"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/></svg>
+                            </div>
+                            <p>Zero Waste</p>
+                        </div>
+                        <div class="badge">
+                            <div class="badge__icon">
+                                <!-- Handshake/Community Icon -->
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a6 6 0 0 0 8-8l-2-2"/><path d="m13 5-2-2a6 6 0 0 0-8 8l2 2"/><path d="m13 5 4 4"/><path d="m11 17-4-4"/></svg>
+                            </div>
+                            <p>Community</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 12: Contact & Footer -->
+        <footer class="footer" id="contact">
+            <div class="container">
+                <div class="footer__top">
+                    <div class="footer__col">
+                        <a href="#" class="logo logo--footer">ELITE<span class="logo__accent">FIT</span></a>
+                        <p class="footer__desc">Elevating fitness to an art form. Join the elite community today.</p>
+                    </div>
+                    <div class="footer__col">
+                        <h4 class="footer__title">Contact</h4>
+                        <p>123 Luxury Blvd, Beverly Hills, CA 90210</p>
+                        <p>+1 (555) 123-4567</p>
+                        <p>concierge@elitefit.com</p>
+                    </div>
+                    <div class="footer__col">
+                        <h4 class="footer__title">Links</h4>
+                        <ul class="footer__links">
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#membership">Membership</a></li>
+                            <li><a href="#booking">Book Now</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer__col">
+                        <h4 class="footer__title">Social</h4>
+                        <div class="social-links">
+                            <a href="#" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            </a>
+                            <a href="#" aria-label="Facebook">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>
+                            </a>
+                            <a href="#" aria-label="Twitter">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer__bottom">
+                    <p>&copy; 2025 Elite Fit. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- SplitType for Text Animations -->
+    <script src="https://unpkg.com/split-type"></script>
+    
+    <script src="js/theme-switcher.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
