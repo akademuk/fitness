@@ -5,6 +5,21 @@
 
 document.addEventListener('DOMContentLoaded', () => {
     
+    // Helper: Load scripts dynamically
+    const loadScript = (src) => {
+        return new Promise((resolve, reject) => {
+            if (document.querySelector(`script[src="${src}"]`)) {
+                resolve();
+                return;
+            }
+            const script = document.createElement('script');
+            script.src = src;
+            script.onload = resolve;
+            script.onerror = reject;
+            document.body.appendChild(script);
+        });
+    };
+
     // 1. Initialize Lenis (Smooth Scroll)
     const lenis = new Lenis({
         duration: 1.2,
@@ -82,95 +97,111 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 4. GSAP Scroll Animations
-    gsap.registerPlugin(ScrollTrigger);
+    // Defer ScrollTrigger registration slightly to allow initial render
+    setTimeout(() => {
+        gsap.registerPlugin(ScrollTrigger);
 
-    // A. Split Text Reveal (Headings)
-    const splitTypes = document.querySelectorAll('[data-split-text]');
-    splitTypes.forEach((char, i) => {
-        const text = new SplitType(char, { types: 'words, chars' });
-        
-        gsap.from(text.chars, {
-            scrollTrigger: {
-                trigger: char,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse'
-            },
-            y: 100,
-            opacity: 0,
-            rotation: 5,
-            duration: 0.8,
-            stagger: 0.02,
-            ease: 'back.out(1.7)'
+        // A. Split Text Reveal (Headings)
+        // Batch DOM reads and writes to avoid layout thrashing
+        const splitTypes = document.querySelectorAll('[data-split-text]');
+        const textInstances = [];
+
+        // 1. Write Phase: Create SplitType instances (modifies DOM)
+        splitTypes.forEach((char) => {
+            textInstances.push({
+                element: char,
+                split: new SplitType(char, { types: 'words, chars' })
+            });
         });
-    });
 
-    // B. Standard Fade Up (Cards, etc)
-    const revealElements = document.querySelectorAll('[data-reveal]');
-    revealElements.forEach(element => {
-        gsap.fromTo(element, 
-            { y: 50, opacity: 0 },
-            {
-                y: 0,
-                opacity: 1,
-                duration: 1,
-                ease: 'power3.out',
+        // 2. Read/Animation Phase: Create GSAP animations
+        textInstances.forEach(({ element, split }) => {
+            gsap.from(split.chars, {
                 scrollTrigger: {
                     trigger: element,
-                    start: 'top 85%',
-                    toggleActions: 'play none none reverse'
-                }
-            }
-        );
-    });
-
-    // C. Staggered List Items
-    const listItems = document.querySelectorAll('.advantages__list');
-    listItems.forEach(list => {
-        const items = list.querySelectorAll('.advantage-item');
-        gsap.fromTo(items, 
-            { x: -50, opacity: 0 },
-            {
-                x: 0,
-                opacity: 1,
-                duration: 0.8,
-                stagger: 0.2,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: list,
                     start: 'top 80%',
-                }
-            }
-        );
-    });
-
-    // D. Parallax Images & Asymmetric Grids
-    const parallaxImages = document.querySelectorAll('[data-parallax-image] img');
-    parallaxImages.forEach(img => {
-        gsap.to(img, {
-            yPercent: -20,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: img.parentElement,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
+                    toggleActions: 'play none none reverse'
+                },
+                y: 100,
+                opacity: 0,
+                rotation: 5,
+                duration: 0.8,
+                stagger: 0.02,
+                ease: 'back.out(1.7)'
+            });
         });
-    });
 
-        // Parallax for Services Grid (Asymmetry)
-        if (window.innerWidth > 1024) {
-            gsap.to('.services__grid .service-card:nth-child(2)', {
-                y: -50, // Move up slightly against the scroll
+        // Refresh ScrollTrigger once after all DOM manipulations
+        ScrollTrigger.refresh();
+
+        // B. Standard Fade Up (Cards, etc)
+        const revealElements = document.querySelectorAll('[data-reveal]');
+        revealElements.forEach(element => {
+            gsap.fromTo(element, 
+                { y: 50, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: element,
+                        start: 'top 85%',
+                        toggleActions: 'play none none reverse'
+                    }
+                }
+            );
+        });
+
+        // C. Staggered List Items
+        const listItems = document.querySelectorAll('.advantages__list');
+        listItems.forEach(list => {
+            const items = list.querySelectorAll('.advantage-item');
+            gsap.fromTo(items, 
+                { x: -50, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 0.8,
+                    stagger: 0.2,
+                    ease: 'power2.out',
+                    scrollTrigger: {
+                        trigger: list,
+                        start: 'top 80%',
+                    }
+                }
+            );
+        });
+
+        // D. Parallax Images & Asymmetric Grids
+        const parallaxImages = document.querySelectorAll('[data-parallax-image] img');
+        parallaxImages.forEach(img => {
+            gsap.to(img, {
+                yPercent: -20,
                 ease: 'none',
                 scrollTrigger: {
-                    trigger: '.services__grid',
+                    trigger: img.parentElement,
                     start: 'top bottom',
                     end: 'bottom top',
-                    scrub: 1
+                    scrub: true
                 }
             });
-        }    // 5. Mobile Menu Toggle
+        });
+
+            // Parallax for Services Grid (Asymmetry)
+            if (window.innerWidth > 1024) {
+                gsap.to('.services__grid .service-card:nth-child(2)', {
+                    y: -50, // Move up slightly against the scroll
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: '.services__grid',
+                        start: 'top bottom',
+                        end: 'bottom top',
+                        scrub: 1
+                    }
+                });
+            }
+    }, 50);    // 5. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
     const navLinks = document.querySelectorAll('.nav__link');
@@ -230,11 +261,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 6. Header Scroll Effect
     const header = document.querySelector('.header');
+    let isScrolled = false;
+    
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            header.classList.add('header--scrolled');
-        } else {
-            header.classList.remove('header--scrolled');
+        const shouldBeScrolled = window.scrollY > 50;
+        
+        if (shouldBeScrolled !== isScrolled) {
+            isScrolled = shouldBeScrolled;
+            if (isScrolled) {
+                header.classList.add('header--scrolled');
+            } else {
+                header.classList.remove('header--scrolled');
+            }
         }
     });
 
@@ -263,46 +301,54 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 7. Initialize Fancybox
-    Fancybox.bind("[data-fancybox]", {
-        // Custom options
-        animated: true,
-        showClass: "f-fadeIn",
-        hideClass: "f-fadeOut",
-        dragToClose: false,
-        Hash: false,
-        Images: {
-            zoom: false,
-        },
-        Toolbar: {
-            display: {
-                left: [],
-                middle: [],
-                right: ["close"],
-            },
-        },
-        Thumbs: {
-            autoStart: false,
-        },
-        on: {
-            close: () => {
-                // Remove focus to prevent accidental re-triggering
-                if (document.activeElement instanceof HTMLElement) {
-                    document.activeElement.blur();
+    // 7. Initialize Fancybox (Deferred & Dynamic)
+    setTimeout(() => {
+        loadScript('assets/vendor/js/fancybox.umd.js').then(() => {
+            Fancybox.bind("[data-fancybox]", {
+                // Custom options
+                animated: true,
+                showClass: "f-fadeIn",
+                hideClass: "f-fadeOut",
+                dragToClose: false,
+                Hash: false,
+                Images: {
+                    zoom: false,
+                },
+                Toolbar: {
+                    display: {
+                        left: [],
+                        middle: [],
+                        right: ["close"],
+                    },
+                },
+                Thumbs: {
+                    autoStart: false,
+                },
+                on: {
+                    close: () => {
+                        // Remove focus to prevent accidental re-triggering
+                        if (document.activeElement instanceof HTMLElement) {
+                            document.activeElement.blur();
+                        }
+                    }
                 }
-            }
-        }
-    });
+            });
+        }).catch(err => console.error('Failed to load Fancybox', err));
+    }, 2500);
 
-    // 8. Phone Mask (IMask)
-    const phoneInput = document.getElementById('phone');
-    if (phoneInput) {
-        IMask(phoneInput, {
-            mask: '+{380} (00) 000-00-00',
-            lazy: false,  // Show placeholder always
-            placeholderChar: '_'
-        });
-    }
+    // 8. Phone Mask (IMask) (Deferred & Dynamic)
+    setTimeout(() => {
+        const phoneInput = document.getElementById('phone');
+        if (phoneInput) {
+            loadScript('assets/vendor/js/imask.js').then(() => {
+                IMask(phoneInput, {
+                    mask: '+{380} (00) 000-00-00',
+                    lazy: false,  // Show placeholder always
+                    placeholderChar: '_'
+                });
+            }).catch(err => console.error('Failed to load IMask', err));
+        }
+    }, 3000);
 
     // 9. Custom Select Dropdown
     const customSelect = document.querySelector('.custom-select');

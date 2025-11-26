@@ -38,6 +38,7 @@
     themeTitle.textContent = 'Color Theme';
     
     const themeSelect = document.createElement('select');
+    themeSelect.setAttribute('aria-label', 'Select Color Theme');
     themes.forEach(t => {
         const opt = document.createElement('option');
         opt.value = t.id;
@@ -59,6 +60,7 @@
     fontTitle.textContent = 'Typography';
     
     const fontSelect = document.createElement('select');
+    fontSelect.setAttribute('aria-label', 'Select Typography');
     fonts.forEach(f => {
         const opt = document.createElement('option');
         opt.value = f.id;

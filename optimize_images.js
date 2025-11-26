@@ -5,16 +5,13 @@ const path = require('path');
 const imagesDir = path.join(__dirname, 'assets', 'images');
 
 const imagesToProcess = [
-    { name: 'image-2.webp', width: 600 },
-    { name: 'image-4.webp', width: 400 },
-    { name: 'image-1.webp', quality: 80 },
-    { name: 'image-3.webp', quality: 80 }
+    { name: 'image-3.jpg', output: 'image-3-opt.webp', quality: 50 }
 ];
 
 async function processImages() {
     for (const img of imagesToProcess) {
         const inputPath = path.join(imagesDir, img.name);
-        const outputPath = path.join(imagesDir, img.name.replace('.webp', '-opt.webp'));
+        const outputPath = path.join(imagesDir, img.output);
 
         if (!fs.existsSync(inputPath)) {
             console.log(`Image not found: ${img.name}`);
@@ -28,9 +25,8 @@ async function processImages() {
                 pipeline = pipeline.resize({ width: img.width });
             }
 
-            if (img.quality) {
-                pipeline = pipeline.webp({ quality: img.quality });
-            }
+            // Convert to WebP with specified quality
+            pipeline = pipeline.webp({ quality: img.quality || 80 });
 
             await pipeline.toFile(outputPath);
             console.log(`Created ${outputPath}`);

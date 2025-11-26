@@ -10,14 +10,34 @@
     <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
     <!-- Preload Critical Assets -->
+    <link rel="preload" href="assets/fonts/Oswald-700.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Oswald-400.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Manrope-400.ttf" as="font" type="font/ttf" crossorigin>
+    <link rel="preload" href="assets/fonts/Syncopate-700.ttf" as="font" type="font/ttf" crossorigin>
+
     <!-- Fonts (Local) -->
-    <link rel="stylesheet" href="css/fonts.css">
+    <style>
+        @font-face { font-family: 'Inter'; font-style: normal; font-weight: 300; font-display: swap; src: url('assets/fonts/Inter-300.ttf') format('truetype'); }
+        @font-face { font-family: 'Inter'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/Inter-400.ttf') format('truetype'); }
+        @font-face { font-family: 'Inter'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/Inter-500.ttf') format('truetype'); }
+        @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 300; font-display: swap; src: url('assets/fonts/Manrope-300.ttf') format('truetype'); }
+        @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/Manrope-400.ttf') format('truetype'); }
+        @font-face { font-family: 'Manrope'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/Manrope-600.ttf') format('truetype'); }
+        @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 300; font-display: swap; src: url('assets/fonts/Oswald-300.ttf') format('truetype'); }
+        @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/Oswald-400.ttf') format('truetype'); }
+        @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 500; font-display: swap; src: url('assets/fonts/Oswald-500.ttf') format('truetype'); }
+        @font-face { font-family: 'Oswald'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/Oswald-700.ttf') format('truetype'); }
+        @font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; font-display: swap; src: url('assets/fonts/PlayfairDisplay-Italic-400.ttf') format('truetype'); }
+        @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/PlayfairDisplay-400.ttf') format('truetype'); }
+        @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 600; font-display: swap; src: url('assets/fonts/PlayfairDisplay-600.ttf') format('truetype'); }
+        @font-face { font-family: 'Syncopate'; font-style: normal; font-weight: 400; font-display: swap; src: url('assets/fonts/Syncopate-400.ttf') format('truetype'); }
+        @font-face { font-family: 'Syncopate'; font-style: normal; font-weight: 700; font-display: swap; src: url('assets/fonts/Syncopate-700.ttf') format('truetype'); }
+    </style>
 
     <!-- External Libraries (Local) -->
-    <link rel="stylesheet" href="assets/vendor/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/vendor/css/swiper-bundle.min.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="assets/vendor/css/fancybox.css" media="print" onload="this.media='all'" />
     <link rel="stylesheet" href="assets/vendor/css/lenis.css" media="print" onload="this.media='all'">
-    <script src="assets/vendor/js/imask.js"></script>
 
     <!-- Main Styles -->
     <link rel="stylesheet" href="css/style.css">
@@ -209,14 +229,14 @@
                         <div class="advantage-card" data-reveal-item>
                             <span class="advantage-card__num">01</span>
                             <div class="advantage-card__text">
-                                <h4>Expert Trainers</h4>
+                                <h3>Expert Trainers</h3>
                                 <p>Certified professionals dedicated to your progress.</p>
                             </div>
                         </div>
                         <div class="advantage-card" data-reveal-item>
                             <span class="advantage-card__num">02</span>
                             <div class="advantage-card__text">
-                                <h4>Elite Equipment</h4>
+                                <h3>Elite Equipment</h3>
                                 <p>The latest technology from Technogym and Life Fitness.</p>
                             </div>
                         </div>
@@ -224,7 +244,7 @@
 
                     <!-- Center Image -->
                     <div class="advantages__center-image">
-                        <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=1000&auto=format&fit=crop" alt="Elite Fitness Atmosphere" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=400&auto=format&fit=crop" alt="Elite Fitness Atmosphere" loading="lazy">
                     </div>
 
                     <!-- Right Column -->
@@ -232,14 +252,14 @@
                         <div class="advantage-card" data-reveal-item>
                             <span class="advantage-card__num">03</span>
                             <div class="advantage-card__text">
-                                <h4>Private Zones</h4>
+                                <h3>Private Zones</h3>
                                 <p>Exclusive areas for focused, uninterrupted workouts.</p>
                             </div>
                         </div>
                         <div class="advantage-card" data-reveal-item>
                             <span class="advantage-card__num">04</span>
                             <div class="advantage-card__text">
-                                <h4>Holistic Nutrition</h4>
+                                <h3>Holistic Nutrition</h3>
                                 <p>Custom meal plans designed to fuel your performance.</p>
                             </div>
                         </div>
@@ -418,7 +438,7 @@
                             </span>
                             <span class="gallery-text">Functional Training</span>
                         </div>
-                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop" alt="Functional Training" width="600" height="400" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop" alt="" width="600" height="400" loading="lazy">
                     </a>
                 </div>
             </div>
@@ -496,7 +516,7 @@
                         <img src="assets/images/image-11.jpg" alt="James D." width="100" height="150" loading="lazy" >
                     </picture>
                                 <div>
-                                    <h5>James D.</h5>
+                                    <h3>James D.</h3>
                                     <span>CEO, Tech Corp</span>
                                 </div>
                             </div>
@@ -513,7 +533,7 @@
                         <img src="assets/images/image-12.jpg" alt="Sarah L." width="100" height="150" loading="lazy" >
                     </picture>
                                 <div>
-                                    <h5>Sarah L.</h5>
+                                    <h3>Sarah L.</h3>
                                     <span>Fashion Designer</span>
                                 </div>
                             </div>
@@ -530,7 +550,7 @@
                         <img src="assets/images/image-13.jpg" alt="Michael R." width="100" height="150" loading="lazy" >
                     </picture>
                                 <div>
-                                    <h5>Michael R.</h5>
+                                    <h3>Michael R.</h3>
                                     <span>Architect</span>
                                 </div>
                             </div>
@@ -543,7 +563,7 @@
                             <div class="testimonial-card__author">
                                 <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=60" alt="Emma W." width="100" height="150" loading="lazy">
                                 <div>
-                                    <h5>Emma W.</h5>
+                                    <h3>Emma W.</h3>
                                     <span>Marketing Director</span>
                                 </div>
                             </div>
@@ -556,7 +576,7 @@
                             <div class="testimonial-card__author">
                                 <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=60" alt="David K." width="100" height="150" loading="lazy">
                                 <div>
-                                    <h5>David K.</h5>
+                                    <h3>David K.</h3>
                                     <span>Entrepreneur</span>
                                 </div>
                             </div>
@@ -835,13 +855,13 @@
                         <p class="footer__desc">Elevating fitness to an art form. Join the elite community today.</p>
                     </div>
                     <div class="footer__col">
-                        <h4 class="footer__title">Contact</h4>
+                        <h3 class="footer__title">Contact</h3>
                         <p>123 Luxury Blvd, Beverly Hills, CA 90210</p>
                         <p>+1 (555) 123-4567</p>
                         <p>concierge@elitefit.com</p>
                     </div>
                     <div class="footer__col">
-                        <h4 class="footer__title">Links</h4>
+                        <h3 class="footer__title">Links</h3>
                         <ul class="footer__links">
                             <li><a href="#services">Services</a></li>
                             <li><a href="#membership">Membership</a></li>
@@ -850,7 +870,7 @@
                         </ul>
                     </div>
                     <div class="footer__col">
-                        <h4 class="footer__title">Social</h4>
+                        <h3 class="footer__title">Social</h3>
                         <div class="social-links">
                             <a href="#" aria-label="Instagram">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
@@ -895,15 +915,14 @@
     </div>
 
     <!-- Scripts -->
-    <script src="assets/vendor/js/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/js/fancybox.umd.js"></script>
-    <script src="assets/vendor/js/lenis.min.js"></script>
-    <script src="assets/vendor/js/gsap.min.js"></script>
-    <script src="assets/vendor/js/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/js/swiper-bundle.min.js" defer></script>
+    <script src="assets/vendor/js/lenis.min.js" defer></script>
+    <script src="assets/vendor/js/gsap.min.js" defer></script>
+    <script src="assets/vendor/js/ScrollTrigger.min.js" defer></script>
     <!-- SplitType for Text Animations -->
-    <script src="assets/vendor/js/split-type.js"></script>
+    <script src="assets/vendor/js/split-type.js" defer></script>
     
-    <script src="js/theme-switcher.js"></script>
-    <script src="js/main.js"></script>
+    <script src="js/theme-switcher.js" defer></script>
+    <script src="js/main.js" defer></script>
 </body>
 </html>

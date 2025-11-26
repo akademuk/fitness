@@ -1091,7 +1091,7 @@ ul {
     object-fit: cover;
 }
 
-.testimonial-card__author h5 {
+.testimonial-card__author h3 {
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -1278,26 +1278,27 @@ ul {
 
 .form__label {
     position: absolute;
-    top: 1.5rem;
-    left: 1.2rem;
+    top: 0;
+    left: 0;
+    transform: translate(1.2rem, 1.5rem);
+    transform-origin: left top;
     color: var(--color-text-muted);
     pointer-events: none;
-    transition: 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease;
     text-transform: uppercase;
     font-size: 0.8rem;
     letter-spacing: 0.05em;
+    padding: 0 0.5rem;
+    border-radius: 4px;
+    background-color: transparent;
 }
 
 .form__input:focus ~ .form__label,
 .form__input:not(:placeholder-shown) ~ .form__label,
 .form__select:valid ~ .form__label {
-    top: -0.8rem;
-    left: 0.5rem;
-    font-size: 0.75rem;
+    transform: translate(0.5rem, -0.8rem) scale(0.9);
     color: var(--color-accent);
-    background: var(--color-bg); /* Hide line behind label */
-    padding: 0 0.5rem;
-    border-radius: 4px;
+    background: var(--color-bg);
 }
 
 /* --- CUSTOM SELECT --- */
@@ -1928,7 +1929,7 @@ details[open] .faq__question::after {
     font-family: var(--font-heading);
 }
 
-.advantage-card__text h4 {
+.advantage-card__text h3 {
     font-size: 1.25rem;
     color: var(--color-accent);
     margin-bottom: 0.5rem;
