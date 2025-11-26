@@ -6,17 +6,18 @@
     <title>ELITE FIT | Exclusive Fitness Club</title>
     <meta name="description" content="An exclusive fitness club offering personalized training, spa services, yoga, and massages for those who value luxury and wellness.">
     
-    <!-- Preload Critical Assets -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <!-- Fonts (Using CDN for immediate preview, but structure allows local swap) -->
-    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;600&family=Oswald:wght@300;400;500;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Syncopate:wght@400;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/images/favicon.svg">
 
-    <!-- External Libraries -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" media="print" onload="this.media='all'" />
-    <link rel="stylesheet" href="https://unpkg.com/lenis@1.0.45/dist/lenis.css" media="print" onload="this.media='all'">
+    <!-- Preload Critical Assets -->
+    <!-- Fonts (Local) -->
+    <link rel="stylesheet" href="css/fonts.css">
+
+    <!-- External Libraries (Local) -->
+    <link rel="stylesheet" href="assets/vendor/css/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="assets/vendor/css/fancybox.css" media="print" onload="this.media='all'" />
+    <link rel="stylesheet" href="assets/vendor/css/lenis.css" media="print" onload="this.media='all'">
+    <script src="assets/vendor/js/imask.js"></script>
 
     <!-- Main Styles -->
     <link rel="stylesheet" href="css/style.css">
@@ -35,13 +36,28 @@
             <a href="#" class="logo">ELITE<span class="logo__accent">FIT</span></a>
             
             <nav class="nav" id="main-nav" aria-label="Main Navigation">
-                <ul class="nav__list">
-                    <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
-                    <li class="nav__item"><a href="#advantages" class="nav__link">Advantages</a></li>
-                    <li class="nav__item"><a href="#gallery" class="nav__link">Gallery</a></li>
-                    <li class="nav__item"><a href="#membership" class="nav__link">Membership</a></li>
-                    <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                </ul>
+                <div class="nav__content">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="#services" class="nav__link">Services</a></li>
+                        <li class="nav__item"><a href="#advantages" class="nav__link">Advantages</a></li>
+                        <li class="nav__item"><a href="#gallery" class="nav__link">Gallery</a></li>
+                        <li class="nav__item"><a href="#membership" class="nav__link">Membership</a></li>
+                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
+                    </ul>
+                    
+                    <div class="nav__footer">
+                        <div class="nav__contact">
+                            <p>123 Luxury Blvd, Beverly Hills</p>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                        <div class="nav__social">
+                            <a href="#" aria-label="Instagram">Instagram</a>
+                            <a href="#" aria-label="Facebook">Facebook</a>
+                            <a href="#" aria-label="Twitter">Twitter</a>
+                        </div>
+                        <a href="#booking" class="btn btn--primary btn--glow nav__cta">Book Session</a>
+                    </div>
+                </div>
             </nav>
 
             <div class="header__actions">
@@ -145,8 +161,8 @@
                 <div class="services__grid">
                     <article class="service-card" data-hover-card>
                         <div class="service-card__icon">
-                            <!-- Dumbbell Icon -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M6.5 6.5h11M6.5 17.5h11M6.5 12h11M5 6.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm0-5.5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/><path d="M4 7h16M4 17h16M2 12h20" stroke-width="2"/></svg>
+                            <!-- Dumbbell Icon (High Quality) -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m6.5 6.5 11 11"/><path d="m21 21-1-1"/><path d="m3 3 1 1"/><path d="m18 22 4-4"/><path d="m2 6 4-4"/><path d="m3 10 7.9-7.9a2.121 2.121 0 0 1 3 3L12 6.9"/><path d="m12 17.1 1.9 1.9a2.121 2.121 0 0 1 3 3L14 21"/><path d="m22 14-4-4"/><path d="m10 2-4 4"/><path d="m17.1 12 1.9-1.9a2.121 2.121 0 1 1 3 3L21 14"/><path d="m6.9 12-1.9 1.9a2.121 2.121 0 1 1-3-3L3 10"/></svg>
                         </div>
                         <h3 class="service-card__title">Personal Training</h3>
                         <p class="service-card__desc">Tailored programs designed by world-class experts to meet your specific goals.</p>
@@ -154,8 +170,8 @@
                     </article>
                     <article class="service-card" data-hover-card>
                         <div class="service-card__icon">
-                            <!-- Spa/Lotus Icon -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M12 8v8M8 12h8" stroke-width="1.5"/></svg>
+                            <!-- Spa/Lotus Icon (High Quality) -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5c-1.5 5-6 7-6 11.5a6 6 0 0 0 12 0C18 9.5 13.5 7.5 12 2.5Z"/><path d="M12 14a6 6 0 0 0-6 6"/><path d="M12 14a6 6 0 0 1 6 6"/><path d="M12 14v8"/></svg>
                         </div>
                         <h3 class="service-card__title">Spa & Wellness</h3>
                         <p class="service-card__desc">Rejuvenate with our exclusive massage therapies, saunas, and relaxation zones.</p>
@@ -163,8 +179,8 @@
                     </article>
                     <article class="service-card" data-hover-card>
                         <div class="service-card__icon">
-                            <!-- Yoga Icon -->
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square" stroke-linejoin="miter"><circle cx="12" cy="5" r="2"/><path d="M9 20l-1-6 4-3 4 3-1 6"/><path d="M6 10l5-2 5 2"/></svg>
+                            <!-- Yoga Icon (High Quality) -->
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><path d="M12 22c-3.5 0-6.5-2-6.5-5.5C5.5 13 9 12 9 9V8h6v1c0 3 3.5 4 3.5 7.5 0 3.5-3 5.5-6.5 5.5Z"/></svg>
                         </div>
                         <h3 class="service-card__title">Yoga & Pilates</h3>
                         <p class="service-card__desc">Find your center in our serene studios with guided sessions for all levels.</p>
@@ -185,39 +201,48 @@
         <!-- Section 3: Advantages -->
         <section class="section advantages" id="advantages">
             <div class="container">
-                <div class="advantages__wrapper">
-                    <div class="advantages__content">
-                        <h2 class="section-title" data-split-text>Why Choose Elite Fit?</h2>
-                        <ul class="advantages__list">
-                            <li class="advantage-item" data-reveal-item>
-                                <span class="advantage-item__num">01</span>
-                                <div class="advantage-item__text">
-                                    <h4>Expert Trainers</h4>
-                                    <p>Certified professionals dedicated to your progress.</p>
-                                </div>
-                            </li>
-                            <li class="advantage-item" data-reveal-item>
-                                <span class="advantage-item__num">02</span>
-                                <div class="advantage-item__text">
-                                    <h4>Elite Equipment</h4>
-                                    <p>The latest technology from Technogym and Life Fitness.</p>
-                                </div>
-                            </li>
-                            <li class="advantage-item" data-reveal-item>
-                                <span class="advantage-item__num">03</span>
-                                <div class="advantage-item__text">
-                                    <h4>Private Zones</h4>
-                                    <p>Exclusive areas for focused, uninterrupted workouts.</p>
-                                </div>
-                            </li>
-                        </ul>
+                <h2 class="section-title text-center" data-split-text style="margin-bottom: 4rem;">Why Choose Elite Fit?</h2>
+                
+                <div class="advantages__grid-layout">
+                    <!-- Left Column -->
+                    <div class="advantages__column advantages__column--left">
+                        <div class="advantage-card" data-reveal-item>
+                            <span class="advantage-card__num">01</span>
+                            <div class="advantage-card__text">
+                                <h4>Expert Trainers</h4>
+                                <p>Certified professionals dedicated to your progress.</p>
+                            </div>
+                        </div>
+                        <div class="advantage-card" data-reveal-item>
+                            <span class="advantage-card__num">02</span>
+                            <div class="advantage-card__text">
+                                <h4>Elite Equipment</h4>
+                                <p>The latest technology from Technogym and Life Fitness.</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="advantages__image" data-parallax-image>
-                        
-                    <picture>
-                        <source srcset="assets/images/image-4-opt.webp" type="image/webp">
-                        <img src="assets/images/image-4.jpg" alt="High end gym equipment" width="1975" height="1480" loading="lazy" >
-                    </picture>
+
+                    <!-- Center Image -->
+                    <div class="advantages__center-image">
+                        <img src="https://images.unsplash.com/photo-1595078475328-1ab05d0a6a0e?q=80&w=1000&auto=format&fit=crop" alt="Elite Fitness Atmosphere" loading="lazy">
+                    </div>
+
+                    <!-- Right Column -->
+                    <div class="advantages__column advantages__column--right">
+                        <div class="advantage-card" data-reveal-item>
+                            <span class="advantage-card__num">03</span>
+                            <div class="advantage-card__text">
+                                <h4>Private Zones</h4>
+                                <p>Exclusive areas for focused, uninterrupted workouts.</p>
+                            </div>
+                        </div>
+                        <div class="advantage-card" data-reveal-item>
+                            <span class="advantage-card__num">04</span>
+                            <div class="advantage-card__text">
+                                <h4>Holistic Nutrition</h4>
+                                <p>Custom meal plans designed to fuel your performance.</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -269,8 +294,8 @@
         <section class="section gallery-section" id="gallery">
             <div class="container">
                 <div class="gallery-header">
-                    <h2 class="section-title" data-split-text>Visual Experience</h2>
-                    <p class="gallery-subtitle">Immerse yourself in the atmosphere of excellence.</p>
+                    <h2 class="section-title" data-reveal>Visual Experience</h2>
+                    <p class="gallery-subtitle" data-reveal>Immerse yourself in the atmosphere of excellence.</p>
                 </div>
                 
                 <div class="gallery-mosaic">
@@ -364,9 +389,9 @@
                     </picture>
                     </a>
                     
-                    <!-- Item 6: Tall -->
+                    <!-- Item 6: Standard (Changed from Tall) -->
                     <a href="https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2069&auto=format&fit=crop" 
-                       class="gallery-item gallery-item--tall" 
+                       class="gallery-item" 
                        data-fancybox="gallery" 
                        data-caption="Yoga Studio">
                         <div class="gallery-item__overlay">
@@ -380,6 +405,20 @@
                         <source srcset="assets/images/image-10.webp" type="image/webp">
                         <img src="assets/images/image-10.jpg" alt="Yoga" width="600" height="401" loading="lazy" >
                     </picture>
+                    </a>
+
+                    <!-- Item 7: Standard (New) -->
+                    <a href="https://images.unsplash.com/photo-1599058945522-28d584b6f0ff?q=80&w=2069&auto=format&fit=crop" 
+                       class="gallery-item" 
+                       data-fancybox="gallery" 
+                       data-caption="Functional Training">
+                        <div class="gallery-item__overlay">
+                            <span class="gallery-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+                            </span>
+                            <span class="gallery-text">Functional Training</span>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?q=80&w=2070&auto=format&fit=crop" alt="Functional Training" width="600" height="400" loading="lazy">
                     </a>
                 </div>
             </div>
@@ -445,9 +484,10 @@
                 <h2 class="section-title text-center" data-reveal>Client Stories</h2>
                 <div class="swiper testimonials-slider" data-reveal>
                     <div class="swiper-wrapper">
-                        <div class="swiper-slide testimonial-card">
+                        <!-- Slide 1 -->
+                        <div class="swiper-slide testimonial-card" data-fancybox data-src="#testimonial-1">
                             <div class="testimonial-card__content">
-                                <p>"The attention to detail at Elite Fit is unmatched. It's not just a gym; it's a lifestyle upgrade."</p>
+                                <p class="testimonial-text-clamp">"The attention to detail at Elite Fit is unmatched. It's not just a gym; it's a lifestyle upgrade. From the moment you walk in, you feel the difference in quality and service."</p>
                             </div>
                             <div class="testimonial-card__author">
                                 
@@ -461,9 +501,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide testimonial-card">
+                        <!-- Slide 2 -->
+                        <div class="swiper-slide testimonial-card" data-fancybox data-src="#testimonial-2">
                             <div class="testimonial-card__content">
-                                <p>"I've trained at many luxury clubs, but the personal trainers here are on another level."</p>
+                                <p class="testimonial-text-clamp">"I've trained at many luxury clubs, but the personal trainers here are on another level. They truly understand biomechanics and have helped me recover from an old injury while getting stronger."</p>
                             </div>
                             <div class="testimonial-card__author">
                                 
@@ -477,9 +518,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swiper-slide testimonial-card">
+                        <!-- Slide 3 -->
+                        <div class="swiper-slide testimonial-card" data-fancybox data-src="#testimonial-3">
                             <div class="testimonial-card__content">
-                                <p>"The spa services after a hard workout are exactly what I need to reset for the week."</p>
+                                <p class="testimonial-text-clamp">"The spa services after a hard workout are exactly what I need to reset for the week. The cryotherapy chamber and the massage therapists are world-class."</p>
                             </div>
                             <div class="testimonial-card__author">
                                 
@@ -493,8 +535,102 @@
                                 </div>
                             </div>
                         </div>
+                        <!-- Slide 4 -->
+                        <div class="swiper-slide testimonial-card" data-fancybox data-src="#testimonial-4">
+                            <div class="testimonial-card__content">
+                                <p class="testimonial-text-clamp">"I never thought I'd enjoy group classes until I tried the HIIT sessions here. The energy is infectious, and the instructors push you just enough without being overwhelming."</p>
+                            </div>
+                            <div class="testimonial-card__author">
+                                <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=60" alt="Emma W." width="100" height="150" loading="lazy">
+                                <div>
+                                    <h5>Emma W.</h5>
+                                    <span>Marketing Director</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Slide 5 -->
+                        <div class="swiper-slide testimonial-card" data-fancybox data-src="#testimonial-5">
+                            <div class="testimonial-card__content">
+                                <p class="testimonial-text-clamp">"As a former pro athlete, I have high standards for equipment. Elite Fit exceeds them all. The Technogym selection is comprehensive and always well-maintained."</p>
+                            </div>
+                            <div class="testimonial-card__author">
+                                <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=60" alt="David K." width="100" height="150" loading="lazy">
+                                <div>
+                                    <h5>David K.</h5>
+                                    <span>Entrepreneur</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="swiper-pagination"></div>
+                </div>
+
+                <!-- Hidden Testimonial Popups -->
+                <div style="display: none;">
+                    <div id="testimonial-1" class="testimonial-popup">
+                        <div class="testimonial-popup__header">
+                            <img src="assets/images/image-11.jpg" alt="James D.">
+                            <div>
+                                <h4>James D.</h4>
+                                <span>CEO, Tech Corp</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-popup__body">
+                            <p>"The attention to detail at Elite Fit is unmatched. It's not just a gym; it's a lifestyle upgrade. From the moment you walk in, you feel the difference in quality and service. The equipment is always pristine, and the staff knows exactly what you need before you even ask."</p>
+                        </div>
+                    </div>
+
+                    <div id="testimonial-2" class="testimonial-popup">
+                        <div class="testimonial-popup__header">
+                            <img src="assets/images/image-12.jpg" alt="Sarah L.">
+                            <div>
+                                <h4>Sarah L.</h4>
+                                <span>Fashion Designer</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-popup__body">
+                            <p>"I've trained at many luxury clubs, but the personal trainers here are on another level. They truly understand biomechanics and have helped me recover from an old injury while getting stronger. The personalized nutrition plan was a game changer for my energy levels."</p>
+                        </div>
+                    </div>
+
+                    <div id="testimonial-3" class="testimonial-popup">
+                        <div class="testimonial-popup__header">
+                            <img src="assets/images/image-13.jpg" alt="Michael R.">
+                            <div>
+                                <h4>Michael R.</h4>
+                                <span>Architect</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-popup__body">
+                            <p>"The spa services after a hard workout are exactly what I need to reset for the week. The cryotherapy chamber and the massage therapists are world-class. It's the only place where I can truly disconnect and focus on my well-being."</p>
+                        </div>
+                    </div>
+
+                    <div id="testimonial-4" class="testimonial-popup">
+                        <div class="testimonial-popup__header">
+                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&auto=format&fit=crop&q=60" alt="Emma W.">
+                            <div>
+                                <h4>Emma W.</h4>
+                                <span>Marketing Director</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-popup__body">
+                            <p>"I never thought I'd enjoy group classes until I tried the HIIT sessions here. The energy is infectious, and the instructors push you just enough without being overwhelming. Plus, the community is so supportive—I've made some great friends here."</p>
+                        </div>
+                    </div>
+
+                    <div id="testimonial-5" class="testimonial-popup">
+                        <div class="testimonial-popup__header">
+                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&auto=format&fit=crop&q=60" alt="David K.">
+                            <div>
+                                <h4>David K.</h4>
+                                <span>Entrepreneur</span>
+                            </div>
+                        </div>
+                        <div class="testimonial-popup__body">
+                            <p>"As a former pro athlete, I have high standards for equipment. Elite Fit exceeds them all. The Technogym selection is comprehensive and always well-maintained. It's rare to find a facility that caters so well to serious training while maintaining a luxury atmosphere."</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -503,32 +639,51 @@
         <section class="section booking" id="booking">
             <div class="container booking__container">
                 <div class="booking__form-wrapper" data-reveal>
-                    <h2 class="section-title">Start Your Journey</h2>
-                    <p class="booking__subtitle">Book a complimentary trial session today.</p>
-                    <form class="form" id="booking-form">
-                        <div class="form__group">
-                            <input type="text" id="name" name="name" placeholder=" " required class="form__input">
-                            <label for="name" class="form__label">Full Name</label>
-                        </div>
-                        <div class="form__group">
-                            <input type="email" id="email" name="email" placeholder=" " required class="form__input">
-                            <label for="email" class="form__label">Email Address</label>
-                        </div>
-                        <div class="form__group">
-                            <input type="tel" id="phone" name="phone" placeholder=" " required class="form__input">
-                            <label for="phone" class="form__label">Phone Number</label>
-                        </div>
-                        <div class="form__group">
-                            <select id="interest" name="interest" class="form__select" required>
-                                <option value="" disabled selected></option>
-                                <option value="personal">Personal Training</option>
-                                <option value="group">Group Classes</option>
-                                <option value="spa">Spa Services</option>
-                            </select>
-                            <label for="interest" class="form__label">Interested In</label>
-                        </div>
-                        <button type="submit" class="btn btn--primary btn--full btn--glow">Request Session</button>
-                    </form>
+                    <div class="booking__glow-container"></div>
+                    <div class="booking__content">
+                        <h2 class="section-title">Start Your Journey</h2>
+                        <p class="booking__subtitle">Book a complimentary trial session today.</p>
+                        <form class="form" id="booking-form">
+                            <div class="form__group">
+                                <input type="text" id="name" name="name" placeholder=" " required class="form__input">
+                                <label for="name" class="form__label">Full Name</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="email" id="email" name="email" placeholder=" " required class="form__input">
+                                <label for="email" class="form__label">Email Address</label>
+                            </div>
+                            <div class="form__group">
+                                <input type="tel" id="phone" name="phone" placeholder=" " required class="form__input">
+                                <label for="phone" class="form__label">Phone Number</label>
+                            </div>
+                            <div class="form__group custom-select-group">
+                                <!-- Native Select (Hidden but functional) -->
+                                <select id="interest" name="interest" class="form__select-native" required>
+                                    <option value="" disabled selected></option>
+                                    <option value="personal">Personal Training</option>
+                                    <option value="group">Group Classes</option>
+                                    <option value="spa">Spa Services</option>
+                                </select>
+                                
+                                <!-- Custom Select UI -->
+                                <div class="custom-select" tabindex="0">
+                                    <div class="custom-select__trigger">
+                                        <span class="custom-select__text"></span>
+                                        <span class="custom-select__arrow">
+                                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                                        </span>
+                                    </div>
+                                    <div class="custom-select__options">
+                                        <div class="custom-select__option" data-value="personal">Personal Training</div>
+                                        <div class="custom-select__option" data-value="group">Group Classes</div>
+                                        <div class="custom-select__option" data-value="spa">Spa Services</div>
+                                    </div>
+                                </div>
+                                <label class="form__label">Interested In</label>
+                            </div>
+                            <button type="submit" class="btn btn--primary btn--full btn--glow">Request Session</button>
+                        </form>
+                    </div>
                 </div>
                 <div class="booking__image" data-parallax-image>
                     
@@ -711,19 +866,42 @@
                 </div>
                 <div class="footer__bottom">
                     <p>&copy; 2025 Elite Fit. All rights reserved.</p>
+                    
+                    <!-- Developer Badge -->
+                    <a href="#" class="developer-badge">
+                        <span class="developer-badge__dot"></span>
+                        Developed by TimeKairos
+                    </a>
                 </div>
             </div>
         </footer>
     </main>
 
+    <!-- Floating Action Button -->
+    <a href="#booking" class="fab-btn" aria-label="Book a Session">
+        <span>Book Now</span>
+    </a>
+
+    <!-- Thank You Popup (Hidden) -->
+    <div style="display: none;" id="thank-you-popup">
+        <div class="thank-you-content text-center">
+            <div class="thank-you-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <h3 class="section-title" style="font-size: 2rem; margin-bottom: 1rem;">Request Received</h3>
+            <p style="color: var(--color-text-muted); margin-bottom: 2rem;">Thank you for choosing Elite Fit. Our concierge will contact you shortly to confirm your appointment.</p>
+            <button class="btn btn--primary" onclick="Fancybox.close()">Close</button>
+        </div>
+    </div>
+
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
-    <script src="https://unpkg.com/lenis@1.0.45/dist/lenis.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/vendor/js/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/js/fancybox.umd.js"></script>
+    <script src="assets/vendor/js/lenis.min.js"></script>
+    <script src="assets/vendor/js/gsap.min.js"></script>
+    <script src="assets/vendor/js/ScrollTrigger.min.js"></script>
     <!-- SplitType for Text Animations -->
-    <script src="https://unpkg.com/split-type"></script>
+    <script src="assets/vendor/js/split-type.js"></script>
     
     <script src="js/theme-switcher.js"></script>
     <script src="js/main.js"></script>

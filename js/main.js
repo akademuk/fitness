@@ -174,6 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const nav = document.querySelector('.nav');
     const navLinks = document.querySelectorAll('.nav__link');
+    const navCta = document.querySelector('.nav__cta');
 
     if (hamburger && nav) {
         hamburger.addEventListener('click', () => {
@@ -182,30 +183,25 @@ document.addEventListener('DOMContentLoaded', () => {
             
             if (!isExpanded) {
                 // Open Menu
-                nav.style.display = 'flex';
-                nav.style.position = 'fixed';
-                nav.style.top = 'var(--header-height)';
-                nav.style.left = '0';
-                nav.style.width = '100%';
-                nav.style.height = 'calc(100vh - var(--header-height))';
-                nav.style.backgroundColor = 'var(--color-bg)';
-                nav.style.flexDirection = 'column';
-                nav.style.alignItems = 'center';
-                nav.style.justifyContent = 'center';
-                nav.style.zIndex = '99';
+                nav.classList.add('active');
+                lenis.stop(); // Disable scroll
                 
-                // Animate links
-                gsap.fromTo('.nav__item', 
-                    { y: 20, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.5, stagger: 0.1 }
+                // Animate Links
+                gsap.fromTo('.nav__link', 
+                    { y: 50, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.2 }
                 );
-                
-                // Disable scroll
-                lenis.stop();
+
+                // Animate Footer Info
+                gsap.fromTo(['.nav__contact', '.nav__social', '.nav__cta'], 
+                    { y: 30, opacity: 0 },
+                    { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: "power3.out", delay: 0.6 }
+                );
+
             } else {
                 // Close Menu
-                nav.style.display = ''; // Revert to CSS default (none on mobile, block on desktop)
-                lenis.start();
+                nav.classList.remove('active');
+                lenis.start(); // Enable scroll
             }
         });
 
@@ -214,11 +210,22 @@ document.addEventListener('DOMContentLoaded', () => {
             link.addEventListener('click', () => {
                 if (window.innerWidth < 1024) {
                     hamburger.setAttribute('aria-expanded', 'false');
-                    nav.style.display = '';
+                    nav.classList.remove('active');
                     lenis.start();
                 }
             });
         });
+        
+        // Close menu on CTA click
+        if (navCta) {
+            navCta.addEventListener('click', () => {
+                if (window.innerWidth < 1024) {
+                    hamburger.setAttribute('aria-expanded', 'false');
+                    nav.classList.remove('active');
+                    lenis.start();
+                }
+            });
+        }
     }
 
     // 6. Header Scroll Effect
@@ -240,12 +247,16 @@ document.addEventListener('DOMContentLoaded', () => {
             
             const targetElement = document.querySelector(targetId);
             if (targetElement) {
-                lenis.scrollTo(targetElement);
+                // Slower and smoother scroll
+                lenis.scrollTo(targetElement, {
+                    duration: 2.0,
+                    easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                });
                 
                 // Close mobile menu if open
                 if (window.innerWidth < 1024 && hamburger && nav) {
                      hamburger.setAttribute('aria-expanded', 'false');
-                     nav.style.display = '';
+                     nav.classList.remove('active');
                      lenis.start();
                 }
             }
@@ -283,6 +294,73 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
+    // 8. Phone Mask (IMask)
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+        IMask(phoneInput, {
+            mask: '+{380} (00) 000-00-00',
+            lazy: false,  // Show placeholder always
+            placeholderChar: '_'
+        });
+    }
+
+    // 9. Custom Select Dropdown
+    const customSelect = document.querySelector('.custom-select');
+    const nativeSelect = document.querySelector('.form__select-native');
+    
+    if (customSelect && nativeSelect) {
+        const trigger = customSelect.querySelector('.custom-select__trigger');
+        const options = customSelect.querySelectorAll('.custom-select__option');
+        const textSpan = customSelect.querySelector('.custom-select__text');
+
+        // Toggle Dropdown
+        trigger.addEventListener('click', () => {
+            customSelect.classList.toggle('open');
+        });
+
+        // Select Option
+        options.forEach(option => {
+            option.addEventListener('click', () => {
+                const value = option.getAttribute('data-value');
+                const text = option.textContent;
+
+                // Update UI
+                textSpan.textContent = text;
+                customSelect.classList.remove('open');
+                customSelect.classList.add('has-value');
+                
+                // Update Native Select
+                nativeSelect.value = value;
+                
+                // Update Selected State
+                options.forEach(opt => opt.classList.remove('selected'));
+                option.classList.add('selected');
+            });
+        });
+
+        // Close when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!customSelect.contains(e.target)) {
+                customSelect.classList.remove('open');
+            }
+        });
+    }
+
+    // 10. Floating Action Button (FAB) Visibility
+    const fab = document.querySelector('.fab-btn');
+    const heroSection = document.querySelector('.hero');
+    
+    if (fab && heroSection) {
+        window.addEventListener('scroll', () => {
+            // Show FAB after scrolling past hero section
+            if (window.scrollY > heroSection.offsetHeight) {
+                fab.classList.add('visible');
+            } else {
+                fab.classList.remove('visible');
+            }
+        });
+    }
+
     // Animate Gallery Items on Scroll
     const galleryItems = document.querySelectorAll('.gallery-item');
     galleryItems.forEach((item, index) => {
@@ -301,5 +379,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         );
+    });
+
+    // 11. Form Submission Handling
+    const bookingForm = document.getElementById('booking-form');
+    if (bookingForm) {
+        bookingForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Simulate API call/processing
+            const btn = bookingForm.querySelector('button[type="submit"]');
+            const originalText = btn.textContent;
+            
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                // Reset button
+                btn.textContent = originalText;
+                btn.disabled = false;
+                
+                // Show Success Popup
+                Fancybox.show([{ 
+                    src: "#thank-you-popup", 
+                    type: "inline",
+                    closeButton: false
+                }]);
+                
+                // Reset Form
+                bookingForm.reset();
+                
+                // Reset Custom Select if exists
+                const customSelect = document.querySelector('.custom-select');
+                const customSelectText = document.querySelector('.custom-select__text');
+                const customSelectOptions = document.querySelectorAll('.custom-select__option');
+                
+                if (customSelect && customSelectText) {
+                    customSelectText.textContent = '';
+                    customSelect.classList.remove('has-value');
+                    customSelectOptions.forEach(opt => opt.classList.remove('selected'));
+                }
+                
+            }, 1500);
+        });
+    }
+
+    // 12. Prevent Transition Flash on Resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        document.body.classList.add('resize-animation-stopper');
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            document.body.classList.remove('resize-animation-stopper');
+        }, 400);
     });
 });
