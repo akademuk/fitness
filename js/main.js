@@ -107,39 +107,45 @@ document.addEventListener('DOMContentLoaded', () => {
         requestAnimationFrame(() => {
             gsap.registerPlugin(ScrollTrigger);
 
-            // A. Split Text Reveal (Headings)
-            // Use a single SplitType instance for all elements to minimize layout thrashing
-            // SplitType will process them in a batch
-            try {
-                const splitInstance = new SplitType('[data-split-text]', { types: 'words, chars' });
-                
-                // Iterate over the original elements to set up ScrollTriggers for each
-                document.querySelectorAll('[data-split-text]').forEach((element) => {
-                    // Select only the chars belonging to this specific element
-                    const chars = element.querySelectorAll('.char');
-                    
-                    if (chars.length > 0) {
-                        gsap.from(chars, {
-                            scrollTrigger: {
-                                trigger: element,
-                                start: 'top 80%',
-                                toggleActions: 'play none none reverse'
-                            },
-                            y: 100,
-                            opacity: 0,
-                            rotation: 5,
-                            duration: 0.8,
-                            stagger: 0.02,
-                            ease: 'back.out(1.7)'
-                        });
-                    }
-                });
-            } catch (e) {
-                console.warn('SplitType failed to initialize', e);
-            }
+            // Use ScrollTrigger.matchMedia for responsive animations
+            let mm = gsap.matchMedia();
 
-            // Refresh ScrollTrigger once after all DOM manipulations
-            ScrollTrigger.refresh();
+            // A. Split Text Reveal (Headings)
+            // Ensure fonts are loaded before splitting to avoid layout shifts and forced reflows
+            document.fonts.ready.then(() => {
+                try {
+                    // Use a single SplitType instance
+                    const splitInstance = new SplitType('[data-split-text]', { types: 'words, chars' });
+                    
+                    // Add a class to mark as split to avoid FOUC
+                    document.querySelectorAll('[data-split-text]').forEach(el => el.classList.add('is-split'));
+
+                    // Iterate over the original elements to set up ScrollTriggers for each
+                    document.querySelectorAll('[data-split-text]').forEach((element) => {
+                        const chars = element.querySelectorAll('.char');
+                        if (chars.length > 0) {
+                            gsap.from(chars, {
+                                scrollTrigger: {
+                                    trigger: element,
+                                    start: 'top 80%',
+                                    toggleActions: 'play none none reverse'
+                                },
+                                y: 100,
+                                opacity: 0,
+                                rotation: 5,
+                                duration: 0.8,
+                                stagger: 0.02,
+                                ease: 'back.out(1.7)'
+                            });
+                        }
+                    });
+                    
+                    // Refresh ScrollTrigger after splitting
+                    ScrollTrigger.refresh();
+                } catch (e) {
+                    console.warn('SplitType failed to initialize', e);
+                }
+            });
 
             // B. Standard Fade Up (Cards, etc)
             const revealElements = document.querySelectorAll('[data-reveal]');
@@ -180,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 );
             });
 
-            // D. Parallax Images & Asymmetric Grids
+            // D. Parallax Images
             const parallaxImages = document.querySelectorAll('[data-parallax-image] img');
             parallaxImages.forEach(img => {
                 gsap.to(img, {
@@ -195,10 +201,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
 
-            // Parallax for Services Grid (Asymmetry)
-            if (window.innerWidth > 1024) {
+            // E. Responsive Parallax (Desktop Only)
+            mm.add("(min-width: 1024px)", () => {
                 gsap.to('.services__grid .service-card:nth-child(2)', {
-                    y: -50, // Move up slightly against the scroll
+                    y: -50,
                     ease: 'none',
                     scrollTrigger: {
                         trigger: '.services__grid',
@@ -207,7 +213,7 @@ document.addEventListener('DOMContentLoaded', () => {
                         scrub: 1
                     }
                 });
-            }
+            });
         });
     }, 100);    // 5. Mobile Menu Toggle
     const hamburger = document.querySelector('.hamburger');
