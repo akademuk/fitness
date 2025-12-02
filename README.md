@@ -1,30 +1,42 @@
-# Elite Fit - Premium Landing Page
+﻿# ELITE FIT — реміум шаблон для фітнес-клубу
 
-This is a high-performance, premium landing page for an Elite Fitness Club, built with modern web technologies.
+ей проект — це енергійний, сучасний та стильний веб-сайт для елітного фітнес-клубу, тренажерного залу або студії персональних тренувань. ін створений, щоб мотивувати, вражати та конвертувати відвідувачів у клієнтів.
 
-## Features
+## Що отримує клієнт?
 
-- **Premium Design**: Minimalist, luxury aesthetic with focus on typography and imagery.
-- **Smooth Experience**: Implements `Lenis` for buttery smooth scrolling.
-- **Animations**: `GSAP` ScrollTrigger animations for engaging content reveal.
-- **Responsive**: Fully responsive design that works on all devices.
-- **Theme System**: Built-in theme switcher to preview different color palettes and font pairings.
+- **райвовий дизайн:** оєднання темної естетики, неонових акцентів та якісної типографіки створює атмосферу преміального спортивного клубу.
+- **Інтерактивність:**
+  - **ероїчний слайдер:** фектна презентація основних напрямків (тренування, спа, йога).
+  - **алерея:** Стильна мозаїка з можливістю перегляду фото у повному розмірі (Fancybox).
+  - **Тренери:** артки з інформацією про експертів.
+  - **ідгуки:** Слайдер з реальними історіями успіху клієнтів.
+- **ункціональність:**
+  - **орма запису:** ручна форма для бронювання тренувань.
+  - **Тарифи:** ітка презентація клубних карт.
+  - **даптивність:** Сайт ідеально працює на мобільних пристроях, планшетах та десктопах.
+- **Технологічність:** икористання сучасних бібліотек для плавної прокрутки та анімацій робить взаємодію з сайтом приємною та "дорогою".
 
-## Project Structure
+## ніверсальність та Теми
 
-- `index.html`: Main HTML structure.
-- `css/style.css`: All styles, including the CSS Variable-based theming system.
-- `js/main.js`: Main logic for sliders, scroll, and menu.
-- `js/theme-switcher.js`: Developer tool for toggling themes (can be removed in production).
+ей шаблон легко адаптується під будь-який спортивний бренд. будований перемикач тем дозволяє миттєво змінити настрій сайту.
 
-## How to Use
+**будовані теми (перемикаються в один клік):**
 
-1. Open `index.html` in your browser.
-2. Use the **Theme** button in the bottom right corner to switch between different luxury themes (e.g., Gold Luxury, Midnight Blue) and font pairings.
-3. The site uses CDN links for libraries (Swiper, GSAP, Lenis) and Fonts for immediate preview. For production, these should be downloaded locally.
+1.  **Default (Onyx):** ласичний темний стиль з білими та червоними акцентами. нергія та сила.
+2.  **Gold Luxury:** оєднання чорного та золотого. ля VIP-клубів та ексклюзивних студій.
+3.  **Midnight Blue:** либокі сині відтінки. Спокій, впевненість, технологічність.
+4.  **Pure Light:** Світла, чиста тема. Ідеально для студій йоги, пілатесу або велнес-центрів.
+5.  **Forest Calm:** риродні зелені тони. ля еко-фітнесу та тренувань на свіжому повітрі.
 
-## Credits
+Також доступні різні варіанти типографіки (шрифтових пар), від сучасних гротесків до елегантних засічок.
 
-- Images: Unsplash
-- Icons: SVG (Inline)
-- Fonts: Google Fonts
+## Технології
+
+- **HTML5 / CSS3:** Семантична верстка, Flexbox/Grid, CSS змінні.
+- **JavaScript (ES6+):** истий та оптимізований код.
+- **GSAP & ScrollTrigger:** рофесійні анімації при скролі.
+- **Lenis:** лавна інерційна прокрутка.
+- **Swiper:** отужний слайдер для героїчного блоку та відгуків.
+- **Fancybox:** айтбокс для перегляду зображень.
+
+ей сайт — готове рішення для запуску онлайн-присутності вашого фітнес-бізнесу за лічені дні.
